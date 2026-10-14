@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Southwest Family Road Trip</title>
+  <meta name="description" content="An 8-day, toddler-paced road trip from Austin to the Grand Canyon, Page and White Sands, with hotels, stops and live forecasts.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1 id="title">Southwest Family Road Trip</h1>
+      <p id="subtitle" class="sub"></p>
+      <div class="controls">
+        <label for="start">Start date</label>
+        <input type="date" id="start">
+        <button type="button" id="clear-start" class="btn small">Clear</button>
+        <button type="button" id="print" class="btn small">Print</button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="overview">
+      <div id="map" aria-label="Map of the road trip route"></div>
+      <div>
+        <h2>At a glance</h2>
+        <ol id="glance" class="glance"></ol>
+        <p class="meta">Route lines on the map are straight-line previews. Use "Open in Google Maps" on each day for real directions.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="days-h">
+      <h2 id="days-h">Day by day</h2>
+      <div id="days"></div>
+    </section>
+
+    <section class="two-col">
+      <div>
+        <h2>Before you go</h2>
+        <ul id="checklist" class="checklist"></ul>
+      </div>
+      <div>
+        <h2>Packing for a toddler</h2>
+        <ul id="packing" class="packing"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a> (CC BY 4.0). Map &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
+    <p>Drive times marked "est." are rough estimates. Hours, prices, closures and tour rules change, so confirm with the official source before you go.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="trip.js"></script>
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
