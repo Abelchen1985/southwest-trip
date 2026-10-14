@@ -37,7 +37,9 @@
   var params = new URLSearchParams(location.search);
   var startParam = params.get('start');
   var state = {
-    start: RT.parseISO(startParam) ? startParam : (RT.parseISO(lsGet('sw-start')) ? lsGet('sw-start') : null),
+    start: RT.parseISO(startParam) ? startParam
+      : RT.parseISO(lsGet('sw-start')) ? lsGet('sw-start')
+      : (RT.parseISO(TRIP.defaultStart) ? TRIP.defaultStart : null),
     sel: null,
     wx: null,          // array of date->day maps, one per DAYS entry
     wxError: null,
@@ -176,17 +178,17 @@
   }
 
   function updateStatus() {
-    if (state.wxError) {
-      if (PREVIEW) { setStatus('Preview: live forecasts and map background load once the page is on GitHub Pages. Pick a start date to see dates and clock-change notes.'); return; }
-      setStatus('Could not load forecasts (' + state.wxError + '). The plan still works without them.', function () { loadWeather(true); });
-      return;
-    }
+    if (PREVIEW) { setStatus('Preview: live forecasts and the map background load once the page is hosted.'); return; }
     if (!state.start) { setStatus('Pick a start date to see dates, clock changes, seasonal notes and forecasts.'); return; }
     var ahead = RT.daysBetween(todayISO(), state.start);
     var lastDay = ahead + DAYS.length - 1;
     if (ahead != null && lastDay < 0) { setStatus('That start date is in the past.'); return; }
     if (ahead != null && ahead >= RT.MAX_FORECAST_DAYS) {
       setStatus('Forecasts show up about two weeks before each day. Check back closer to the trip.');
+      return;
+    }
+    if (state.wxError) {
+      setStatus('Could not load forecasts (' + state.wxError + '). The plan still works without them.', function () { loadWeather(true); });
       return;
     }
     if (!state.wx) { setStatus('Loading forecasts…'); return; }
@@ -205,8 +207,10 @@
     var box = el('div', { class: 'wx' });
     box.appendChild(el('div', { class: 'sub-h', style: 'margin-top:0', text: 'Weather · ' + day.wx.label }));
     if (!w) {
+      var dayAhead = state.start ? RT.daysBetween(todayISO(), dateFor(i)) : null;
       var msg = !state.start ? 'Set a start date above to see the forecast.'
         : PREVIEW ? 'Live forecast shows on the hosted site.'
+        : dayAhead != null && dayAhead >= RT.MAX_FORECAST_DAYS ? 'Forecast appears about two weeks before this day.'
         : state.wxError ? 'Forecast unavailable right now.'
         : 'Forecast appears about two weeks before this day.';
       box.appendChild(el('div', { class: 'meta', text: msg }));
@@ -299,7 +303,7 @@
           }))
         ]));
       } else {
-        right.appendChild(el('div', { class: 'hotel', text: 'Home sweet home.' }));
+        right.appendChild(el('div', { class: 'hotel', text: 'Home.' }));
       }
 
       card.appendChild(el('div', { class: 'day-body' }, [left, right]));

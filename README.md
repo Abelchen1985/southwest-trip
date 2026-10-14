@@ -1,7 +1,7 @@
 # Southwest Family Road Trip
 
-A one-page trip planner for an 8-day, toddler-paced road trip:
-Austin → Amarillo → Albuquerque → Sedona → Grand Canyon → Page (Antelope Canyon, Horseshoe Bend) → Albuquerque → White Sands → Austin.
+A one-page trip planner for an 8-day, family-paced road trip (Dec 25 to Jan 1):
+Austin → Amarillo → Albuquerque → Sedona → Grand Canyon → Page (Antelope Canyon, Horseshoe Bend) → Gallup → White Sands → Roswell → Austin.
 
 Plain HTML, CSS and JavaScript. No build step, no API keys, no backend.
 
@@ -15,7 +15,8 @@ Plain HTML, CSS and JavaScript. No build step, no API keys, no backend.
   - time-zone notes (Arizona skips daylight saving; New Mexico and Texas don't),
   - date-based notes (Sandia tram fall maintenance window, crane season, Navajo Nation time for Antelope Canyon),
   - forecasts and weather tips for each day once it is within about two weeks.
-- A pre-trip checklist (saved in your browser) and a toddler packing list.
+- A pre-trip checklist (saved in your browser) and a packing list for an infant and an 8-year-old.
+- Defaults to a Dec 25 start; change it with the date picker.
 - Shareable link: the start date is kept in the URL (`?start=YYYY-MM-DD`).
 - Print button for a paper copy.
 

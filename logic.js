@@ -145,7 +145,7 @@
     if (has('slot') && pop >= 30) out.push('Rain in the area: slot canyon tours can be cancelled for flash-flood risk. Keep your tour operator’s contact handy.');
     if (has('tram') && gust >= 35) out.push('Strong gusts: the tram can pause in high wind. Old Town is the backup plan.');
     if (has('dunes') && gust >= 30) out.push('Windy dunes mean blowing sand: bring sunglasses and a stroller cover.');
-    if (has('rim') && w.tmin != null && w.tmin <= 40) out.push('Cold on the rim after sunset: pack a warm layer and a hat for your toddler.');
+    if (has('rim') && w.tmin != null && w.tmin <= 40) out.push('Cold on the rim after sunset: pack warm layers and hats for the kids.');
     else if (w.tmin != null && w.tmin <= 35) out.push('Near-freezing night: pack warm layers.');
     if (w.tmax != null && w.tmax >= 90) out.push('Hot afternoon: do outdoor stops early or late, with shade and extra water.');
     if (!has('slot') && pop >= 50) out.push('Rain likely: keep the backup plan for this day in mind.');
@@ -168,6 +168,13 @@
       if (m === 11 || m === 12 || m === 1) out.push('Crane season: Bosque del Apache is worth the short detour off I-25 (go early morning or late afternoon).');
       else if (m === 10 && day >= 20) out.push('Cranes may just be arriving at Bosque del Apache (they typically start in late October).');
     }
+    var winter = m === 12 || m === 1 || m === 2;
+    if (has('snow') && winter) out.push('Winter driving: check az511.gov (Arizona) or nmroads.com (New Mexico) for snow and ice before you leave.');
+    if (has('rim') && winter) out.push('Winter on the rim: expect icy patches on the Rim Trail and nights well below freezing.');
+    if (m === 12 && day === 24) out.push('Christmas Eve: many restaurants close early.');
+    if (m === 12 && day === 25) out.push('Christmas Day: many restaurants and some shops are closed. Pack lunch and snacks, and fill up on gas when you can.');
+    if (m === 12 && day === 31) out.push('New Year’s Eve: book dinner ahead, and be extra careful on the roads after dark.');
+    if (m === 1 && day === 1) out.push('New Year’s Day: some restaurants and attractions open late or stay closed.');
     if (has('navajo') && isUSDST(iso)) {
       out.push('Daylight saving is on: the Navajo Nation (where Antelope Canyon is) observes it but the rest of Arizona doesn’t, so it is 1 hour ahead of Page. Confirm which time your tour uses.');
     }
